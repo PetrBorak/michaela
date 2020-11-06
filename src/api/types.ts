@@ -1,3 +1,5 @@
 export type Api = {
-  getPage: (id: string) => Promise<any>,
+  getSubnavigationTop: () => Promise<any>,
+  getHomepage: () => Promise<any>,
+  getNavigation: () => Promise<any>,
 }

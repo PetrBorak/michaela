@@ -1,5 +1,3 @@
-import gql from 'graphql-tag'
-
 export interface QueryVariables {
   id: string
 }
@@ -15,7 +13,7 @@ export default `
     page(id: $id) {
       id,
       mainImage {
-        
+        url
       }
     }
   }`
