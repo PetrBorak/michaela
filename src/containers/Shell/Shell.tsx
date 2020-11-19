@@ -14,26 +14,18 @@ const publicUrl = process.env.PUBLIC_URL;
 export interface Props {
   subNavigation: any;
   navigation: any;
-  fetchNavigation: any
-  fetchSubnavigationTop: any
 }
 
 export const Shell = ({ subNavigation,
-                        navigation,
-                        fetchNavigation,
-                        fetchSubnavigationTop
+                        navigation
 } : Props) => {
-  useEffect(() => {
-    fetchNavigation()
-    fetchSubnavigationTop()
-  }, [fetchNavigation, fetchSubnavigationTop])
   return (
     <>
       <Router>
         <Subheader navigation={subNavigation}/>
         <Header navigation={navigation}/>
         <Switch>
-          <Route exact path={`${publicUrl}/homepage`} component={() => <Homepage />} />
+          <Route exact path={`${publicUrl}/homepage`} component={Homepage} />
           <Route exact path={`${publicUrl}/test`} component={() => <div> Not found </div>} />
           <Route path={`${publicUrl}/*`} render={() => <Redirect to={`${publicUrl}/test`} />} />
         </Switch>
@@ -44,12 +36,7 @@ export const Shell = ({ subNavigation,
 
 const mapStateToProps = (state: State) => ({
   navigation: state.navigation,
-  subNavigation: state.subnavigationTop
+  subNavigation: state.subnavigationTop,
 })
 
-const mapDispatchToProps = {
-  fetchNavigation: actionCreators.navigation.getNavigationStart,
-  fetchSubnavigationTop: actionCreators.subnavigationTop.getSubnavigationStart
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Shell)
+export default connect(mapStateToProps)(Shell)

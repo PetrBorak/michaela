@@ -21,13 +21,24 @@ import SubnavigationTopReducer, {
   GET_SUB_NAVIGATION_TOP_START
 } from './subnavigation-top/subnavigation-top'
 
+import RequestCounterReducer, {
+  actions as RequestCounterActions,
+  PWA_DECREMENT_PENDING_REQUESTS_COUNTER,
+  PWA_INCREMENT_PENDING_REQUESTS_COUNTER,
+} from './PWA/requestCounter'
+
 export const actionCreators = {
+  requestCounter: RequestCounterActions,
   homepage: HomePageActions,
   navigation: NavigationActions,
   subnavigationTop: SubnavigationTopActions
 }
 
 export const actions = {
+  requestCounter: {
+    PWA_DECREMENT_PENDING_REQUESTS_COUNTER,
+    PWA_INCREMENT_PENDING_REQUESTS_COUNTER
+  },
   homePage: {
     GET_HOME_PAGE_SUCCESS,
     GET_HOME_PAGE_ERROR,
@@ -47,6 +58,7 @@ export const actions = {
 
 export const reducers = combineReducers(
   {
+    requestCounter: RequestCounterReducer,
     homepage: HomePageReducer,
     navigation: NavigationReducer,
     subnavigationTop: SubnavigationTopReducer

@@ -6,6 +6,7 @@ import { actionCreators } from '../../reducers'
 export function* subnavigationTop(api: Api): any {
   try {
     const response = yield api.getSubnavigationTop();
+    yield put(actionCreators.requestCounter.PWADecrementPendingRequestsCounter());
     yield put(actionCreators.subnavigationTop.getSubnavigationSuccess(response))
   } catch(error){
     yield put(actionCreators.subnavigationTop.getSubnavigationError(error))
